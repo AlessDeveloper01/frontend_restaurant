@@ -1,10 +1,14 @@
 {
-    "name": "systempos_update",
-    "alias": "systempos_update",
     "routes": [
         {
         "src": "/(.*)",
         "dest": "/"
+        }
+    ],
+    "rewrites": [
+        {
+        "source": "/(.*)",
+        "destination": "/"
         }
     ]
 }
