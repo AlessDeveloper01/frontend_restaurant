@@ -24,7 +24,7 @@ const AllRoutes = () => {
 				}
 			)
 			.then(() => {
-				if (location.pathname === "/auth/login") {
+				if (location.pathname === "/auth/login" || location.pathname === "/") {
 					navigate("/dashboard");
 				}
 			})
