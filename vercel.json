@@ -1,8 +1,9 @@
+
 {
     "rewrites": [
         {
         "source": "/(.*)",
-        "destination": ""
+        "destination": "/$1"
         }
     ],
     "headers": [
