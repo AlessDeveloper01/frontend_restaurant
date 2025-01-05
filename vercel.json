@@ -1,16 +1,10 @@
 {
     "name": "systempos_update",
     "alias": "systempos_update",
-    "builds": [
-        {
-        "src": "index.js",
-        "use": "@now/node-server"
-        }
-    ],
     "routes": [
         {
         "src": "/(.*)",
-        "dest": "/index.js"
+        "dest": "/index.html"
         }
     ]
 }
