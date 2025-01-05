@@ -16,12 +16,12 @@ const CerrarCaja = () => {
     }
 
     const handleCerrarCaja = async () => {
-        if(ventas.length < 1){
+        if(ventas.length < 1 ) {
             setAlert('error', 'No hay ventas para cerrar');
+            setModal(false, null);
     
             setTimeout(() => {
                 setAlert('info', '');
-                setModal(false, null);
             }, 1500);
             return;
         }
@@ -58,7 +58,7 @@ const CerrarCaja = () => {
         panelClassName="sm:max-w-lg" placement="justify-center items-start">
         <div className="duration-300 ease-in-out transition-all  m-3 sm:mx-auto flex flex-col bg-white shadow-sm rounded dark:bg-gray-800 dark:border-gray-700">
             <div className={`flex justify-between items-center py-2.5 px-4 bg-warning/90 dark:border-gray-700`}>
-                <h3 className="font-medium text-white text-lg">Modal Title</h3>
+                <h3 className="font-medium text-white text-lg">Cerrar caja de ventas</h3>
                 <button className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 dark:text-gray-200" type="button">
                     <i className="ri-close-line text-2xl text-white" onClick={onClose}></i>
                 </button>
