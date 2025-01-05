@@ -1,0 +1,7 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+const ModalLayout = ({ showModal, toggleModal, panelClassName, children, placement, isStatic }) => {
+    return (_jsx(Transition, { appear: true, show: showModal, as: Fragment, children: _jsxs(Dialog, { static: isStatic ?? false, as: "div", className: "relative", onClose: isStatic ? () => null : toggleModal, children: [_jsx(Transition.Child, { as: Fragment, enter: "ease-out duration-300", enterFrom: "opacity-0", enterTo: "opacity-100", leave: "ease-in duration-200", leaveFrom: "opacity-100", leaveTo: "opacity-0", children: _jsx("div", { className: "fixed inset-0 bg-black bg-opacity-40 z-40" }) }), _jsx("div", { className: "fixed inset-0 overflow-y-auto z-50", children: _jsx("div", { className: `sm:flex min-h-full ${placement ?? 'justify-center items-center'}`, children: _jsx(Transition.Child, { as: Fragment, enter: "ease-out", enterFrom: "opacity-0 scale-95", enterTo: "opacity-100 scale-100", leave: "ease-in", leaveFrom: "opacity-100 scale-100", leaveTo: "opacity-0 scale-95", children: _jsx("div", { className: "transition-all", children: _jsx(Dialog.Panel, { className: `text-left align-middle transition-all min-h-full duration-300 overflow-y-auto transform overflow-hidden rounded-lg ${panelClassName}`, children: children }) }) }) }) })] }) }));
+};
+export default ModalLayout;
