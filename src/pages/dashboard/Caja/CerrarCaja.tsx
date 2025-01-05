@@ -7,6 +7,7 @@ import { useVentasStore } from '@/store/Ventas/Ventas.store';
 const CerrarCaja = () => {
     const modal = useGlobalStore((state) => state.modal);
     const ventas = useVentasStore((state) => state.ventas);
+    const setVentas = useVentasStore((state) => state.setVentas);
     const setModal = useGlobalStore((state) => state.setModal);
     const setAlert = useGlobalStore((state) => state.setAlert);
 
@@ -15,6 +16,16 @@ const CerrarCaja = () => {
     }
 
     const handleCerrarCaja = async () => {
+        if(ventas.length < 1){
+            setAlert('error', 'No hay ventas para cerrar');
+    
+            setTimeout(() => {
+                setAlert('info', '');
+                setModal(false, null);
+            }, 1500);
+            return;
+        }
+        
         const response = await CloseBox();
         const errorMessages: { [key: number]: string } = {
             400: "Error al cerrar la caja",
@@ -31,17 +42,9 @@ const CerrarCaja = () => {
             }, 1500);
             return;
         }
-
-        if(ventas.length < 1){
-            setAlert('error', 'No hay ventas para cerrar');
-    
-            setTimeout(() => {
-                setAlert('info', '');
-            }, 1500);
-            return;
-        }
     
         setAlert("success", response.msg);
+        setVentas([]);
 
         setModal(false, null);
         setTimeout(() => {
