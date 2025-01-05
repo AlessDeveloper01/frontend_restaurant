@@ -1,11 +1,16 @@
 {
-        "builds": [
-          {
-            "src": "package.json",
-            "use": "@vercel/static-build",
-            "config": {
-              "distDir": "src"
-            }
-          }
-        ]
+    "name": "systempos_update",
+    "alias": "systempos_update",
+    "builds": [
+        {
+        "src": "index.js",
+        "use": "@now/node-server"
+        }
+    ],
+    "routes": [
+        {
+        "src": "/(.*)",
+        "dest": "/index.js"
+        }
+    ]
 }
