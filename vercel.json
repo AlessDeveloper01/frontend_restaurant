@@ -1,14 +1,21 @@
 {
-    "routes": [
-        {
-        "src": "/(.*)",
-        "dest": "/"
-        }
-    ],
     "rewrites": [
         {
         "source": "/(.*)",
         "destination": "/"
         }
-    ]
+    ],
+    "headers": [
+        {
+        "source": "/(.*)",
+        "headers": [
+            {
+            "key": "Cache-Control",
+            "value": "no-cache"
+            }
+        ]
+        }
+    ],
+    "trailingSlash": true,
+    "cleanUrls": true
 }
