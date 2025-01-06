@@ -14,27 +14,57 @@ const AllRoutes = () => {
 	useEffect(() => {
 		const token = localStorage.getItem("restaurante_token");
 		const splitToken = token?.split(" ")[1];
-		axios.post(
-				`${import.meta.env.VITE_API_URL}/auth/validate`,
-				{},
-				{
-					headers: {
-						Authorization: splitToken,
-					},
-				}
-			)
-			.then(() => {
-				if (location.pathname === "/auth/login" || location.pathname === "/") {
-					navigate("/dashboard");
-				}
-			})
-			.catch(() => {
-				localStorage.removeItem("restaurante_token");
-				if(location.pathname != '/landing') {
-					navigate("/auth/login");
-				}
-			});
-	}, [navigate, location.pathname]);
+	  
+		if (!token) {
+		  if (!["/auth/login", "/landing"].includes(location.pathname)) {
+			navigate("/auth/login");
+		  }
+		  return;
+		}
+	  
+		axios
+		  .post(`${import.meta.env.VITE_API_URL}/auth/validate`, {}, {
+			headers: {
+			  Authorization: splitToken,
+			},
+		  })
+		  .then(() => {
+			if (location.pathname === "/auth/login" || location.pathname === "/") {
+			  navigate("/dashboard");
+			}
+		  })
+		  .catch(() => {
+			localStorage.removeItem("restaurante_token");
+			if (!["/auth/login", "/landing"].includes(location.pathname)) {
+			  navigate("/auth/login");
+			}
+		  });
+	  }, [navigate, location.pathname]);
+	  
+	// useEffect(() => {
+	// 	const token = localStorage.getItem("restaurante_token");
+	// 	const splitToken = token?.split(" ")[1];
+	// 	axios.post(
+	// 			`${import.meta.env.VITE_API_URL}/auth/validate`,
+	// 			{},
+	// 			{
+	// 				headers: {
+	// 					Authorization: splitToken,
+	// 				},
+	// 			}
+	// 		)
+	// 		.then(() => {
+	// 			if (location.pathname === "/auth/login" || location.pathname === "/") {
+	// 				navigate("/dashboard");
+	// 			}
+	// 		})
+	// 		.catch(() => {
+	// 			localStorage.removeItem("restaurante_token");
+	// 			if(location.pathname != '/landing') {
+	// 				navigate("/auth/login");
+	// 			}
+	// 		});
+	// }, [navigate, location.pathname]);
 
 	return (
 		<>
